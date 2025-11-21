@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marzieh Alireza Mirhoseini</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+    h1 { margin-bottom: 0; }
+    h2 {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+      margin-top: 28px;
+    }
+    .paper {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .paper img {
+      max-width: 220px;
+      display: block;
+      margin-bottom: 6px;
+      border-radius: 6px;
+    }
+    .paper-title { font-weight: 600; }
+    .paper-venue { font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Marzieh Alireza Mirhoseini</h1>
+  <p>Applied &amp; Computational Mathematics · PDE-constrained optimization · Physics-informed AI</p>
+  <p>Email: <a href="mailto:malimirhoseini@gmail.com">malimirhoseini@gmail.com</a></p>
+
+  <h2>About</h2>
+  <p>
+    I am an applied and computational mathematician working on reduced-order models for
+    convection-dominated PDEs and machine-learning surrogates for environmental hazards such as flooding.
+    I completed my Ph.D. in Aerospace &amp; Mechanical Engineering at the University of Notre Dame and
+    have held postdoctoral positions at the University of Notre Dame and at MIT (EAPS).
+  </p>
+
+  <h2>Publications</h2>
+
+  <div class="paper">
+    <img src="jcp-2023.png" alt="Illustration for JCP 2023 paper (placeholder)">
+    <div class="paper-title">
+      Model reduction of convection-dominated PDEs via optimization-based implicit feature tracking
+    </div>
+    <div class="paper-venue">Journal of Computational Physics, 473 (2023)</div>
+    <p>
+      A reduced-order modelling method that tracks moving features, such as shocks,
+      by smoothly deforming the domain. This allows a small reduced model to capture sharp fronts
+      accurately while greatly reducing simulation cost.
+    </p>
+    <p><a href="https://doi.org/10.1016/j.jcp.2022.111739">Read paper</a></p>
+  </div>
+
+  <div class="paper">
+    <img src="fluids-2024.png" alt="Illustration for Fluids 2024 paper (placeholder)">
+    <div class="paper-title">
+      Accelerated solutions of convection-dominated PDEs using implicit feature tracking and empirical quadrature
+    </div>
+    <div class="paper-venue">
+      International Journal for Numerical Methods in Fluids, 96(1), 102–124 (2024)
+    </div>
+    <p>
+      Combines implicit feature tracking with an empirical quadrature hyperreduction method to obtain
+      reduced-order models that are both accurate and very fast for convection-dominated flows.
+    </p>
+    <p>
+      <a href="https://doi.org/10.1002/fld.5234">Read paper</a> ·
+      <a href="https://arxiv.org/abs/2305.15661">arXiv</a>
+    </p>
+  </div>
+
+  <div class="paper">
+    <img src="inundation-fewdata.png" alt="Illustration for rainfall-driven inundation paper (placeholder)">
+    <div class="paper-title">
+      Learning surrogate rainfall-driven inundation models with few data
+    </div>
+    <div class="paper-venue">arXiv:2411.19323 (2024)</div>
+    <p>
+      A deep learning surrogate (based on ResNet-style networks) that maps rainfall inputs
+      to flood inundation maps using only a small number of expensive hydrodynamic simulations.
+    </p>
+    <p><a href="https://arxiv.org/abs/2411.19323">arXiv</a></p>
+  </div>
+
+  <div class="paper">
+    <img src="oja-plasticity.png" alt="Illustration for Oja plasticity rule paper (placeholder)">
+    <div class="paper-title">
+      Oja’s plasticity rule overcomes several challenges of training neural networks under biological constraints
+    </div>
+    <div class="paper-venue">with Navid Shervani-Tabar &amp; Robert Rosenbaum, arXiv:2408.08408</div>
+    <p>
+      Shows that adding Oja’s synaptic plasticity rule to error-driven learning yields neural networks
+      that are biologically plausible, stable to train, and can perform well even with limited data.
+    </p>
+    <p><a href="https://arxiv.org/abs/2408.08408">arXiv</a></p>
+  </div>
+
+  <div class="paper">
+    <img src="extreme-flood.png" alt="Illustration for extreme flood surrogate paper (placeholder)">
+    <div class="paper-title">
+      AI-driven surrogate for extreme flood inundation maps with real gauge value prediction
+    </div>
+    <div class="paper-venue">In preparation, planned arXiv submission (2025)</div>
+    <p>
+      Ongoing work on an AI surrogate that predicts extreme flood inundation maps and water depths
+      from real gauge data and rainfall, aiming to reproduce rare but high-impact events efficiently.
+    </p>
+    <p><em>Preprint coming soon.</em></p>
+  </div>
+
+  <h2>Curriculum Vitae</h2>
+  <p>
+    <a href="Curriculum_Vitae-11.pdf">Download my CV (PDF)</a>
+    <!-- If you used a different file name, change it here -->
+  </p>
+</body>
+</html>
