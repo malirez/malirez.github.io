@@ -5,358 +5,1389 @@
   <title>Marzieh Alireza Mirhoseini – Applied & Computational Mathematics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Marzieh Alireza Mirhoseini – Researcher in PDE-constrained optimization, model reduction, and physics-informed AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #0b7285;
-      --bg: #f8f9fa;
-      --text: #212529;
+      --teal:       #0d7377;
+      --teal-light: #14a085;
+      --teal-pale:  #e6f4f4;
+      --slate:      #1a2332;
+      --slate-mid:  #3d4f63;
+      --slate-soft: #8899aa;
+      --warm:       #f5f0e8;
+      --white:      #ffffff;
+      --rule:       #dde3e9;
+      --serif:      'EB Garamond', Georgia, serif;
+      --sans:       'Outfit', sans-serif;
+      --mono:       'DM Mono', monospace;
     }
-    * {
-      box-sizing: border-box;
-    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background-color: var(--bg);
-      line-height: 1.6;
+      font-family: var(--sans);
+      color: var(--slate);
+      background: var(--warm);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
     }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── HEADER / NAV ──────────────────────────── */
     header {
-      background-color: white;
-      border-bottom: 1px solid #dee2e6;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
     }
-    .container {
-      max-width: 960px;
+
+    .nav-inner {
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 0 1.2rem;
-    }
-    nav {
+      padding: 0 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
+      height: 58px;
     }
-    nav .brand {
-      font-weight: 600;
-      font-size: 1.05rem;
+
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--slate);
+      font-weight: 500;
+      letter-spacing: 0.01em;
     }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 0.8rem;
-      padding: 0;
-      margin: 0;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
+      gap: 0.2rem;
     }
-    nav li {
-      margin: 0;
+
+    nav ul li a {
+      display: block;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--slate-mid);
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
     }
-    .hero {
-      padding: 2.5rem 0 1.5rem;
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: var(--teal);
+      background: var(--teal-pale);
+      text-decoration: none;
     }
-    .hero-inner {
+
+    /* ─── PAGE SYSTEM ───────────────────────────── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 58px;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .page.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* ─── PAGE HEADERS ──────────────────────────── */
+    .page-header {
+      padding: 3.5rem 0 2rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 2.5rem;
+    }
+
+    .page-header h1 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--slate);
+    }
+
+    .page-header .sub {
+      font-size: 1rem;
+      color: var(--slate-soft);
+      margin-top: 0.4rem;
+      font-weight: 300;
+    }
+
+    /* ─── ABOUT PAGE ────────────────────────────── */
+    #page-about .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: center;
+      grid-template-columns: 1fr 220px;
+      gap: 3rem;
+      align-items: start;
+      padding: 3.5rem 0 2.5rem;
     }
-    @media (max-width: 720px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
+
+    @media (max-width: 700px) {
+      #page-about .hero-grid { grid-template-columns: 1fr; }
+      .photo-col { order: -1; }
     }
-    .hero h1 {
-      margin: 0 0 0.25rem;
-      font-size: 2rem;
+
+    #page-about h1 {
+      font-family: var(--serif);
+      font-size: 2.9rem;
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
     }
-    .hero .tagline {
+
+    .tagline {
       font-size: 1.05rem;
-      color: #495057;
-      margin-bottom: 0.75rem;
+      color: var(--teal);
+      font-weight: 400;
+      margin-bottom: 1rem;
+      font-family: var(--serif);
+      font-style: italic;
     }
-    .meta {
-      font-size: 0.95rem;
-      color: #495057;
-      margin-bottom: 0.75rem;
+
+    .bio {
+      font-size: 1.02rem;
+      color: var(--slate-mid);
+      margin-bottom: 1.2rem;
+      max-width: 580px;
     }
-    .links a {
-      margin-right: 0.8rem;
-      font-size: 0.95rem;
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
     }
-    .photo-placeholder {
-      width: 140px;
-      height: 140px;
+
+    .contact-row a {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--slate-mid);
+      font-weight: 500;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      background: white;
+      transition: all 0.2s;
+    }
+
+    .contact-row a:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .photo-frame {
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
-      border: 2px solid #dee2e6;
+      background: linear-gradient(135deg, var(--teal-pale) 0%, #c8e6e6 100%);
+      border: 3px solid var(--teal);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
-      color: #868e96;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: white;
+      overflow: hidden;
     }
-    section {
-      padding: 1.5rem 0;
-      border-top: 1px solid #e9ecef;
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    section h2 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
+
+    .photo-label {
+      font-size: 0.8rem;
+      color: var(--slate-soft);
+      text-align: center;
+      font-family: var(--mono);
     }
-    section h3 {
-      margin-bottom: 0.25rem;
-      margin-top: 1rem;
-      font-size: 1.05rem;
-    }
-    .pill-list {
+
+    /* Pills */
+    .pill-group {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin: 0.4rem 0 0.8rem;
-      padding: 0;
-      list-style: none;
+      margin: 0.6rem 0 1.4rem;
     }
-    .pill-list li {
-      padding: 0.15rem 0.55rem;
+
+    .pill {
+      padding: 0.22rem 0.7rem;
       border-radius: 999px;
-      background-color: #e9ecef;
-      font-size: 0.85rem;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid #b0dada;
     }
-    .pub-list {
-      list-style: none;
-      padding-left: 0;
+
+    /* Position / Education table */
+    .timeline {
+      margin: 1rem 0 1.5rem;
     }
-    .pub-list li {
-      margin-bottom: 0.75rem;
-    }
-    .pub-title {
-      font-weight: 600;
-    }
-    .news-list {
-      list-style: none;
-      padding-left: 0;
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.5rem 1.2rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--rule);
       font-size: 0.95rem;
     }
-    .news-list li {
+
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-year {
+      color: var(--slate-soft);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      padding-top: 0.1rem;
+    }
+
+    .tl-role { font-weight: 500; }
+    .tl-org { color: var(--slate-mid); font-size: 0.92rem; }
+
+    /* News */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    .news-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      font-size: 0.92rem;
+    }
+
+    .news-card .year {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─── SECTION TITLES (inside pages) ────────── */
+    .sec-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      margin-top: 2.2rem;
+      color: var(--slate);
+    }
+
+    .sec-rule {
+      height: 2px;
+      background: linear-gradient(to right, var(--teal), transparent);
+      margin-bottom: 1rem;
+    }
+
+    /* ─── RESEARCH PAGE ─────────────────────────── */
+    .research-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s;
+    }
+
+    .research-card:hover { box-shadow: 0 4px 24px rgba(13,115,119,0.1); }
+
+    @media (max-width: 780px) {
+      .research-card { grid-template-columns: 1fr; }
+    }
+
+    .research-fig {
+      background: var(--teal-pale);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+    }
+
+    .research-fig svg {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+    }
+
+    .research-body {
+      padding: 1.6rem 1.8rem;
+    }
+
+    .research-body h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--slate);
+    }
+
+    .research-body p {
+      font-size: 0.95rem;
+      color: var(--slate-mid);
+      margin-bottom: 0.8rem;
+    }
+
+    .research-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      background: var(--teal-pale);
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      font-weight: 400;
+    }
+
+    /* ─── PUBLICATIONS PAGE ─────────────────────── */
+    .pub-list { list-style: none; }
+
+    .pub-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 0 1rem;
+      align-items: start;
+    }
+
+    .pub-num {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--slate-soft);
+      padding-top: 0.15rem;
+      text-align: right;
+    }
+
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: var(--slate);
+      margin-bottom: 0.2rem;
+      line-height: 1.35;
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--slate-mid);
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-authors strong { color: var(--slate); }
+
+    .pub-venue {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--slate-soft);
       margin-bottom: 0.4rem;
     }
+
+    .pub-links { font-size: 0.85rem; }
+
+    .pub-links a {
+      display: inline-block;
+      margin-right: 0.6rem;
+      padding: 0.15rem 0.5rem;
+      background: var(--teal-pale);
+      border-radius: 3px;
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .preprint-badge {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      background: #fff3cd;
+      color: #856404;
+      font-size: 0.75rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+
+    /* ─── TEACHING PAGE ─────────────────────────── */
+    .teaching-block {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .teaching-block h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .teaching-block .inst {
+      font-size: 0.88rem;
+      color: var(--teal);
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+      font-family: var(--mono);
+    }
+
+    .course-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .course-chip {
+      padding: 0.2rem 0.6rem;
+      background: var(--warm);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      font-size: 0.82rem;
+      color: var(--slate-mid);
+    }
+
+    /* ─── TALKS PAGE ────────────────────────────── */
+    .talk-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0 1.2rem;
+    }
+
+    .talk-year {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--slate-soft);
+      padding-top: 0.1rem;
+    }
+
+    .talk-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .talk-venue {
+      font-size: 0.9rem;
+      color: var(--slate-mid);
+    }
+
+    /* ─── CONTACT PAGE ──────────────────────────── */
+    .contact-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      max-width: 540px;
+      margin: 1.5rem 0;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+    }
+
+    .contact-line:last-child { border-bottom: none; }
+    .contact-line .label { font-weight: 500; min-width: 80px; color: var(--slate-mid); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--mono); }
+
+    .cv-banner {
+      background: linear-gradient(135deg, var(--teal) 0%, #0a5f62 100%);
+      color: white;
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      max-width: 540px;
+      margin-top: 1.5rem;
+    }
+
+    .cv-banner h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .cv-banner p { font-size: 0.92rem; opacity: 0.88; margin-bottom: 1rem; }
+
+    .cv-btn {
+      display: inline-block;
+      background: white;
+      color: var(--teal);
+      padding: 0.5rem 1.2rem;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+
+    .cv-btn:hover { opacity: 0.9; text-decoration: none; }
+
+    /* ─── FOOTER ────────────────────────────────── */
     footer {
-      padding: 1.5rem 0 2rem;
-      font-size: 0.85rem;
-      color: #868e96;
       text-align: center;
+      font-size: 0.82rem;
+      color: var(--slate-soft);
+      padding: 2rem;
+      border-top: 1px solid var(--rule);
+      background: white;
+      font-family: var(--mono);
+    }
+
+    /* ─── MOBILE NAV ────────────────────────────── */
+    @media (max-width: 620px) {
+      .nav-inner { padding: 0 1rem; }
+      .brand { font-size: 1rem; }
+      nav ul { gap: 0; }
+      nav ul li a { padding: 0.3rem 0.45rem; font-size: 0.75rem; letter-spacing: 0.03em; }
+      .page-wrap { padding: 0 1rem 4rem; }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="container">
+    <div class="nav-inner">
+      <div class="brand">M. A. Mirhoseini</div>
       <nav>
-        <div class="brand">Marzieh Alireza Mirhoseini</div>
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#teaching">Teaching</a></li>
-          <li><a href="#talks">Talks</a></li>
-          <li><a href="#cv-contact">CV &amp; Contact</a></li>
+          <li><a href="#" onclick="showPage('about')" class="nav-link active" data-page="about">About</a></li>
+          <li><a href="#" onclick="showPage('research')" class="nav-link" data-page="research">Research</a></li>
+          <li><a href="#" onclick="showPage('publications')" class="nav-link" data-page="publications">Publications</a></li>
+          <li><a href="#" onclick="showPage('teaching')" class="nav-link" data-page="teaching">Teaching</a></li>
+          <li><a href="#" onclick="showPage('talks')" class="nav-link" data-page="talks">Talks</a></li>
+          <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
-    <div class="container">
-      <section class="hero" id="about">
-        <div class="hero-inner">
-          <div>
-            <h1>Marzieh Alireza Mirhoseini</h1>
-            <div class="tagline">
-              Applied &amp; Computational Mathematician · PDE-constrained optimization · Model reduction · Physics-informed AI
-            </div>
-            <div class="meta">
-              Independent Researcher, Cambridge, MA · U.S. permanent resident<br>
-              Former Postdoctoral Associate, MIT EAPS · Ph.D., University of Notre Dame
-            </div>
-            <p>
-              I work at the interface of optimization, partial differential equations, and machine learning.
-              My research develops reduced-order and surrogate models for convection-dominated PDEs and for
-              environmental hazards such as flooding, with a focus on methods that are both mathematically
-              principled and computationally efficient.
-            </p>
-            <div class="links">
-              <a href="mailto:malimirhoseini@gmail.com">Email</a>
-              <a href="Curriculum_Vitae-11.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-              <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
-              <a href="https://github.com/malirez" target="_blank" rel="noopener">GitHub</a>
-              <a href="https://www.linkedin.com/in/malireza" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
-            <h3>Research interests</h3>
-            <ul class="pill-list">
-              <li>Model reduction &amp; hyperreduction</li>
-              <li>Convection-dominated PDEs</li>
-              <li>Surrogate models for flooding</li>
-              <li>Physics-informed AI / ML</li>
-              <li>Optimization methods</li>
-            </ul>
+  <!-- ════════════════════════════════════════════
+       PAGE: ABOUT
+  ════════════════════════════════════════════ -->
+  <div class="page active" id="page-about">
+    <div class="page-wrap">
+
+      <div class="hero-grid">
+        <div>
+          <h1>Marzieh Alireza<br>Mirhoseini</h1>
+          <div class="tagline">Applied &amp; Computational Mathematics</div>
+          <p class="bio">
+            I work at the interface of <strong>optimization</strong>, <strong>partial differential equations</strong>, and
+            <strong>machine learning</strong>. My research develops reduced-order and surrogate models for convection-dominated
+            PDEs and for environmental hazards such as flooding — methods that are both mathematically principled and
+            computationally efficient.
+          </p>
+          <p class="bio">
+            Previously a Postdoctoral Associate at <strong>MIT EAPS</strong> and the <strong>University of Notre Dame</strong>.
+            Based in Cambridge, MA. U.S. Permanent Resident.
+          </p>
+          <div class="contact-row">
+            <a href="mailto:malimirhoseini@gmail.com">✉ Email</a>
+            <a href="Curriculum_Vitae-11.pdf" target="_blank" rel="noopener">↓ CV (PDF)</a>
+            <a href="https://scholar.google.com" target="_blank" rel="noopener">Scholar</a>
+            <a href="https://github.com/malirez" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/malireza" target="_blank" rel="noopener">LinkedIn</a>
           </div>
-          <div>
-            <div class="photo-placeholder">
-              Add headshot here
-            </div>
+          <div class="pill-group">
+            <span class="pill">Model Reduction</span>
+            <span class="pill">Convection-dominated PDEs</span>
+            <span class="pill">Surrogate Flood Models</span>
+            <span class="pill">Physics-informed ML</span>
+            <span class="pill">Optimization</span>
+            <span class="pill">Hyperreduction</span>
           </div>
         </div>
+        <div class="photo-col">
+          <div class="photo-frame">
+            <!-- Replace src with actual headshot -->
+            <svg viewBox="0 0 190 190" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="95" cy="75" r="38" fill="#b0dada"/>
+              <ellipse cx="95" cy="158" rx="58" ry="40" fill="#b0dada"/>
+            </svg>
+          </div>
+          <div class="photo-label">Add headshot<br>to replace placeholder</div>
+        </div>
+      </div>
 
-        <h3>News</h3>
-        <ul class="news-list">
-          <li><strong>2024</strong> – Talk on surrogate rainfall-driven inundation models at AGU Fall Meeting, Washington, D.C.</li>
-          <li><strong>2023</strong> – Joined MIT EAPS as Postdoctoral Associate.</li>
-          <li><strong>2023</strong> – Paper on optimization-based implicit feature tracking published in <em>Journal of Computational Physics</em>.</li>
-        </ul>
-      </section>
+      <!-- Positions -->
+      <div class="sec-title">Positions</div>
+      <div class="sec-rule"></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">Nov 2023 – Dec 2024</div>
+          <div>
+            <div class="tl-role">Postdoctoral Associate</div>
+            <div class="tl-org">MIT EAPS, Cambridge, MA</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">May 2023 – Oct 2023</div>
+          <div>
+            <div class="tl-role">Postdoctoral Associate</div>
+            <div class="tl-org">University of Notre Dame, ACMS, Notre Dame, IN</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2010 – 2014</div>
+          <div>
+            <div class="tl-role">Lecturer</div>
+            <div class="tl-org">Islamic Azad University &amp; Payame Noor University, Iran</div>
+          </div>
+        </div>
+      </div>
 
-      <section id="research">
-        <h2>Research</h2>
+      <!-- Education -->
+      <div class="sec-title">Education</div>
+      <div class="sec-rule"></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">May 2023</div>
+          <div>
+            <div class="tl-role">Ph.D., Aerospace &amp; Mechanical Engineering</div>
+            <div class="tl-org">University of Notre Dame, Notre Dame, IN</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Jan 2022</div>
+          <div>
+            <div class="tl-role">M.S., Aerospace &amp; Mechanical Engineering</div>
+            <div class="tl-org">University of Notre Dame, Notre Dame, IN</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">May 2016</div>
+          <div>
+            <div class="tl-role">M.S., Mathematics</div>
+            <div class="tl-org">University of Denver, Denver, CO</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Aug 2010</div>
+          <div>
+            <div class="tl-role">M.S., Applied Mathematics</div>
+            <div class="tl-org">University of Zanjan, Iran · <em>Summa Cum Laude</em></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">May 2008</div>
+          <div>
+            <div class="tl-role">B.S., Mathematics</div>
+            <div class="tl-org">Imam Khomeini International University (IKIU), Qazvin, Iran</div>
+          </div>
+        </div>
+      </div>
 
-        <h3>Model reduction &amp; hyperreduction for convection-dominated PDEs</h3>
-        <p>
-          I develop optimization-based reduced-order models that track moving features such as shocks and sharp fronts
-          by smoothly deforming the domain. These approaches enable accurate, low-dimensional models for
-          convection-dominated flows at a fraction of the computational cost of full simulations.
-        </p>
+      <!-- News -->
+      <div class="sec-title">News</div>
+      <div class="sec-rule"></div>
+      <div class="news-grid">
+        <div class="news-card">
+          <div class="year">Dec 2024</div>
+          Talk on surrogate rainfall-driven inundation models at <strong>AGU Fall Meeting</strong>, Washington, D.C.
+        </div>
+        <div class="news-card">
+          <div class="year">Nov 2024</div>
+          Preprint: <em>Learning surrogate rainfall-driven inundation models with few data</em> — arXiv:2411.19323.
+        </div>
+        <div class="news-card">
+          <div class="year">Nov 2023</div>
+          Joined <strong>MIT EAPS</strong> as Postdoctoral Associate.
+        </div>
+        <div class="news-card">
+          <div class="year">2024</div>
+          Paper published in <em>Int. J. Numerical Methods in Fluids</em> on accelerated PDE solutions via implicit feature tracking.
+        </div>
+      </div>
 
-        <h3>AI and surrogate models for flood and hazard prediction</h3>
-        <p>
-          I design physics-aware deep learning surrogates that map rainfall and gauge observations to flood inundation
-          maps using only a small number of expensive hydrodynamic simulations. Current projects include learning
-          surrogates for rainfall-driven inundation and for extreme flood events with real gauge data.
-        </p>
-
-        <h3>Neural dynamics &amp; biologically constrained learning</h3>
-        <p>
-          In collaboration with colleagues in neural dynamics and computing, I study how biologically plausible plasticity
-          rules can support learning in recurrent neural networks under realistic constraints.
-        </p>
-      </section>
-
-      <section id="publications">
-        <h2>Publications</h2>
-
-        <h3>Refereed journal articles</h3>
-        <ul class="pub-list">
-          <li>
-            <span class="pub-title">Model reduction of convection-dominated PDEs via optimization-based implicit feature tracking</span><br>
-            <strong>M. A. Mirhoseini</strong>, M. J. Zahr,
-            <em>Journal of Computational Physics</em> 473 (2023) 111739.
-            doi:10.1016/j.jcp.2022.111739.
-          </li>
-          <li>
-            <span class="pub-title">Accelerated solutions of convection-dominated PDEs using implicit feature tracking and empirical quadrature</span><br>
-            <strong>M. A. Mirhoseini</strong>, M. J. Zahr,
-            <em>International Journal for Numerical Methods in Fluids</em> 96(1) (2024) 102–124.
-            doi:10.1002/fld.5234.
-          </li>
-        </ul>
-
-        <h3>Preprints &amp; under review</h3>
-        <ul class="pub-list">
-          <li>
-            <span class="pub-title">Learning surrogate rainfall-driven inundation models with few data</span><br>
-            <strong>M. A. Mirhoseini</strong>, arXiv:2411.19323 (2024).
-          </li>
-          <li>
-            <span class="pub-title">Oja’s plasticity rule overcomes several challenges of training neural networks under biological constraints</span><br>
-            N. Shervani-Tabar, <strong>M. A. Mirhoseini</strong>, R. Rosenbaum, arXiv:2408.08408 (2024).
-          </li>
-          <li>
-            <span class="pub-title">AI-driven surrogate for extreme flood inundation maps with real gauge value prediction</span><br>
-            <strong>M. A. Mirhoseini</strong>, preprint in preparation.
-          </li>
-        </ul>
-      </section>
-
-      <section id="teaching">
-        <h2>Teaching</h2>
-
-        <p>
-          I have taught and supported a wide range of mathematics and engineering courses as both instructor of record
-          and teaching assistant. My teaching emphasizes clear learning outcomes, digital-first materials, and authentic
-          problem solving that connects mathematical theory to real-world applications.
-        </p>
-
-        <h3>Instructor of record (Iran, 2010–2013)</h3>
-        <p>
-          Islamic Azad University &amp; Payame Noor University:
-          Calculus I–III; Ordinary Differential Equations; Linear Algebra; Linear Programming;
-          Discrete Mathematics; Statistics &amp; Probability; Mathematical/Statistical Software (Pascal/MATLAB/C++).
-        </p>
-
-        <h3>Teaching assistant &amp; online instruction</h3>
-        <p>
-          University of Notre Dame, 2018–2023: Online TA/recitations (Zoom); Aerospace Structures; Finite Element
-          Methods; Differential Equations, Vibrations, and Controls I; Mechanics II; COMSOL labs.
-        </p>
-        <p>
-          University of Denver, 2014–2016: Support for Calculus I–III, business calculus, college algebra, and
-          trigonometry.
-        </p>
-      </section>
-
-      <section id="talks">
-        <h2>Selected talks</h2>
-        <ul class="pub-list">
-          <li>
-            “Learning surrogate extreme rainfall-driven inundation models with few data,” AGU Fall Meeting,
-            Washington, D.C., Dec 2024.
-          </li>
-          <li>
-            “Efficient model reduction for convection-dominated PDEs through nonlinear manifold approximation,”
-            MIT EAPS, Aug 2023.
-          </li>
-          <li>
-            “Accelerated solutions of convection-dominated PDEs,” Stochastic Control and Financial Engineering Conference,
-            Princeton University, Jun 2023.
-          </li>
-          <li>
-            “Model reduction of convection-dominated PDE via optimization-based implicit feature tracking,”
-            WCCM–APCOM, Yokohama, Japan, Jul–Aug 2022.
-          </li>
-        </ul>
-      </section>
-
-      <section id="cv-contact">
-        <h2>CV &amp; Contact</h2>
-        <p>
-          <strong>Email:</strong> <a href="mailto:malimirhoseini@gmail.com">malimirhoseini@gmail.com</a><br>
-          <strong>Location:</strong> Cambridge, MA, USA<br>
-          <strong>CV:</strong> <a href="Curriculum_Vitae-11.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
-        </p>
-      </section>
     </div>
-  </main>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PAGE: RESEARCH
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-research">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Research</h1>
+        <p class="sub">PDE-constrained optimization · Model reduction · Physics-informed AI · Environmental hazards</p>
+      </div>
+
+      <!-- Card 1: Model Reduction -->
+      <div class="research-card">
+        <div class="research-fig">
+          <!-- SVG: Shock-tracking / domain deformation illustration -->
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#0d7377;stop-opacity:0.15"/>
+                <stop offset="100%" style="stop-color:#0d7377;stop-opacity:0.45"/>
+              </linearGradient>
+              <linearGradient id="g1b" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#14a085;stop-opacity:0.1"/>
+                <stop offset="100%" style="stop-color:#14a085;stop-opacity:0.35"/>
+              </linearGradient>
+            </defs>
+            <!-- Reference domain (left) -->
+            <rect x="12" y="30" width="115" height="150" rx="4" fill="white" stroke="#0d7377" stroke-width="1.2" opacity="0.5"/>
+            <text x="70" y="22" text-anchor="middle" font-size="9" fill="#0d7377" font-family="DM Mono,monospace" opacity="0.8">Reference domain</text>
+            <!-- Uniform wave lines -->
+            <line x1="30" y1="70" x2="110" y2="70" stroke="#0d7377" stroke-width="1" opacity="0.3"/>
+            <line x1="30" y1="90" x2="110" y2="90" stroke="#0d7377" stroke-width="1" opacity="0.3"/>
+            <line x1="30" y1="110" x2="110" y2="110" stroke="#0d7377" stroke-width="1" opacity="0.3"/>
+            <line x1="30" y1="130" x2="110" y2="130" stroke="#0d7377" stroke-width="1" opacity="0.3"/>
+            <line x1="30" y1="150" x2="110" y2="150" stroke="#0d7377" stroke-width="1" opacity="0.3"/>
+            <!-- Vertical grid lines -->
+            <line x1="48" y1="30" x2="48" y2="180" stroke="#0d7377" stroke-width="0.7" opacity="0.2"/>
+            <line x1="70" y1="30" x2="70" y2="180" stroke="#0d7377" stroke-width="0.7" opacity="0.2"/>
+            <line x1="92" y1="30" x2="92" y2="180" stroke="#0d7377" stroke-width="0.7" opacity="0.2"/>
+            <!-- Sharp front in reference -->
+            <line x1="70" y1="30" x2="70" y2="180" stroke="#0d7377" stroke-width="2.5" opacity="0.9"/>
+            <!-- Arrow (mapping) -->
+            <path d="M 135 105 Q 150 95 165 105" fill="none" stroke="#3d4f63" stroke-width="1.5" marker-end="url(#arr)"/>
+            <text x="150" y="92" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="DM Mono,monospace">φ(x;μ)</text>
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#3d4f63"/>
+              </marker>
+            </defs>
+            <!-- Physical domain (right) -->
+            <rect x="172" y="30" width="115" height="150" rx="4" fill="white" stroke="#14a085" stroke-width="1.2" opacity="0.5"/>
+            <text x="230" y="22" text-anchor="middle" font-size="9" fill="#14a085" font-family="DM Mono,monospace" opacity="0.8">Physical domain</text>
+            <!-- Deformed solution with moving front -->
+            <!-- Deformed grid lines (compressed on left, stretched on right) -->
+            <path d="M 180 70 Q 205 68 215 70 Q 240 72 280 70" fill="none" stroke="#14a085" stroke-width="1" opacity="0.3"/>
+            <path d="M 180 90 Q 205 88 215 90 Q 240 92 280 90" fill="none" stroke="#14a085" stroke-width="1" opacity="0.3"/>
+            <path d="M 180 110 Q 205 108 215 110 Q 240 112 280 110" fill="none" stroke="#14a085" stroke-width="1" opacity="0.3"/>
+            <path d="M 180 130 Q 205 128 215 130 Q 240 132 280 130" fill="none" stroke="#14a085" stroke-width="1" opacity="0.3"/>
+            <path d="M 180 150 Q 205 148 215 150 Q 240 152 280 150" fill="none" stroke="#14a085" stroke-width="1" opacity="0.3"/>
+            <!-- Shock step profile -->
+            <path d="M 180 155 L 215 155 L 215 55 L 280 55" fill="none" stroke="#14a085" stroke-width="2.8" opacity="0.9"/>
+            <!-- Shade under profile -->
+            <path d="M 180 155 L 215 155 L 215 55 L 280 55 L 280 180 L 180 180 Z" fill="#14a085" opacity="0.07"/>
+            <!-- Parameter label -->
+            <text x="230" y="196" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="DM Mono,monospace">u(x; μ) — sharp front</text>
+          </svg>
+        </div>
+        <div class="research-body">
+          <h3>Model Reduction &amp; Hyperreduction for Convection-Dominated PDEs</h3>
+          <p>
+            Standard reduced-order models (ROMs) struggle with convection-dominated problems because solutions contain
+            sharp fronts and shocks that cannot be captured efficiently by linear subspaces. I develop
+            <strong>optimization-based implicit feature tracking</strong> methods that smoothly deform the computational
+            domain so that the moving feature stays aligned with the mesh, enabling compact, accurate low-dimensional
+            representations.
+          </p>
+          <p>
+            Combined with <strong>empirical quadrature / hyperreduction</strong>, these approaches achieve dramatic
+            speedups — full accuracy at a fraction of the cost of high-fidelity simulations — making
+            parameter studies and real-time queries feasible for complex fluid problems.
+          </p>
+          <div class="research-tags">
+            <span class="tag">PDE-constrained optimization</span>
+            <span class="tag">Implicit feature tracking</span>
+            <span class="tag">Empirical quadrature</span>
+            <span class="tag">Galerkin ROM</span>
+            <span class="tag">Conservation laws</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Flood surrogate -->
+      <div class="research-card">
+        <div class="research-fig">
+          <!-- SVG: Rainfall-driven inundation illustration -->
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+            <defs>
+              <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#e6f4f4;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#c8e6e6;stop-opacity:1"/>
+              </linearGradient>
+              <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#0d7377;stop-opacity:0.55"/>
+                <stop offset="100%" style="stop-color:#0d7377;stop-opacity:0.9"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="210" fill="url(#sky)" rx="4"/>
+            <!-- Rain drops -->
+            <g opacity="0.7">
+              <line x1="30" y1="15" x2="25" y2="30" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="55" y1="8"  x2="50" y2="23" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="80" y1="18" x2="75" y2="33" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="110" y1="10" x2="105" y2="25" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="140" y1="15" x2="135" y2="30" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="170" y1="8"  x2="165" y2="23" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="200" y1="18" x2="195" y2="33" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="230" y1="10" x2="225" y2="25" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="260" y1="18" x2="255" y2="33" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="285" y1="12" x2="280" y2="27" stroke="#0d7377" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+            <!-- Terrain -->
+            <path d="M 0 165 Q 40 140 80 148 Q 120 156 150 142 Q 180 128 220 145 Q 250 156 300 138 L 300 210 L 0 210 Z" fill="#5a7a55" opacity="0.7"/>
+            <!-- Inundation layer -->
+            <path d="M 0 165 Q 50 158 90 162 Q 130 166 160 158 Q 190 150 240 162 Q 270 168 300 155 L 300 210 L 0 210 Z" fill="url(#water)"/>
+            <!-- Water surface ripple -->
+            <path d="M 20 168 Q 45 164 70 168 Q 95 172 120 168 Q 145 164 170 168" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+            <path d="M 160 162 Q 190 158 220 162 Q 250 166 280 160" fill="none" stroke="white" stroke-width="1" opacity="0.4"/>
+            <!-- Gauge station -->
+            <rect x="145" y="115" width="6" height="45" fill="#8899aa" rx="1"/>
+            <rect x="140" y="113" width="16" height="5" fill="#3d4f63" rx="1"/>
+            <!-- Gauge ticks -->
+            <line x1="151" y1="120" x2="155" y2="120" stroke="#3d4f63" stroke-width="1"/>
+            <line x1="151" y1="128" x2="155" y2="128" stroke="#3d4f63" stroke-width="1"/>
+            <line x1="151" y1="136" x2="155" y2="136" stroke="#3d4f63" stroke-width="1"/>
+            <!-- Neural network dots (surrogate) -->
+            <circle cx="240" cy="60" r="5" fill="white" stroke="#0d7377" stroke-width="1.5"/>
+            <circle cx="240" cy="80" r="5" fill="white" stroke="#0d7377" stroke-width="1.5"/>
+            <circle cx="240" cy="100" r="5" fill="white" stroke="#0d7377" stroke-width="1.5"/>
+            <circle cx="265" cy="70" r="5" fill="white" stroke="#14a085" stroke-width="1.5"/>
+            <circle cx="265" cy="90" r="5" fill="white" stroke="#14a085" stroke-width="1.5"/>
+            <circle cx="288" cy="80" r="6" fill="#0d7377" stroke="#0d7377" stroke-width="1.5"/>
+            <line x1="245" y1="60" x2="260" y2="70" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="245" y1="60" x2="260" y2="90" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="245" y1="80" x2="260" y2="70" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="245" y1="80" x2="260" y2="90" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="245" y1="100" x2="260" y2="70" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="245" y1="100" x2="260" y2="90" stroke="#0d7377" stroke-width="0.8" opacity="0.5"/>
+            <line x1="270" y1="70" x2="282" y2="80" stroke="#14a085" stroke-width="0.8" opacity="0.5"/>
+            <line x1="270" y1="90" x2="282" y2="80" stroke="#14a085" stroke-width="0.8" opacity="0.5"/>
+            <text x="263" y="112" text-anchor="middle" font-size="7.5" fill="#0d7377" font-family="DM Mono,monospace" opacity="0.9">Surrogate NN</text>
+            <!-- Arrow from gauge to NN -->
+            <path d="M 156 130 Q 200 118 232 90" fill="none" stroke="#3d4f63" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr2)"/>
+            <defs>
+              <marker id="arr2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="research-body">
+          <h3>Physics-Aware Surrogate Models for Flood &amp; Hazard Prediction</h3>
+          <p>
+            High-fidelity hydrodynamic simulations of flood inundation are extremely costly — prohibitively so for
+            real-time forecasting or uncertainty quantification. I design <strong>deep learning surrogates</strong> that
+            learn the map from rainfall and gauge observations to inundation maps using only a small number of expensive
+            simulator runs.
+          </p>
+          <p>
+            Current work focuses on physics-constrained architectures that respect the underlying hydraulics,
+            data-efficient training strategies for scarce simulation budgets, and generalisation to
+            extreme or out-of-distribution events with real gauge data.
+          </p>
+          <div class="research-tags">
+            <span class="tag">Deep learning</span>
+            <span class="tag">Few-data learning</span>
+            <span class="tag">Rainfall-runoff</span>
+            <span class="tag">Flood inundation</span>
+            <span class="tag">Physics-informed ML</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Neural dynamics -->
+      <div class="research-card">
+        <div class="research-fig">
+          <!-- SVG: Biologically plausible neural network / Oja rule -->
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:#0d7377;stop-opacity:0.15"/>
+                <stop offset="100%" style="stop-color:#0d7377;stop-opacity:0"/>
+              </radialGradient>
+            </defs>
+            <rect width="300" height="210" fill="#f0f8f8" rx="4"/>
+            <!-- Glow background -->
+            <ellipse cx="150" cy="105" rx="110" ry="85" fill="url(#glow)"/>
+            <!-- Layer 1 neurons (input) -->
+            <circle cx="50" cy="55"  r="11" fill="white" stroke="#0d7377" stroke-width="2"/>
+            <circle cx="50" cy="95"  r="11" fill="white" stroke="#0d7377" stroke-width="2"/>
+            <circle cx="50" cy="135" r="11" fill="white" stroke="#0d7377" stroke-width="2"/>
+            <circle cx="50" cy="175" r="11" fill="white" stroke="#0d7377" stroke-width="2"/>
+            <!-- Layer 2 neurons (hidden) -->
+            <circle cx="150" cy="75"  r="13" fill="white" stroke="#14a085" stroke-width="2"/>
+            <circle cx="150" cy="115" r="13" fill="white" stroke="#14a085" stroke-width="2"/>
+            <circle cx="150" cy="155" r="13" fill="white" stroke="#14a085" stroke-width="2"/>
+            <!-- Layer 3 neurons (output) -->
+            <circle cx="250" cy="85"  r="13" fill="#e6f4f4" stroke="#0d7377" stroke-width="2.5"/>
+            <circle cx="250" cy="125" r="13" fill="#e6f4f4" stroke="#0d7377" stroke-width="2.5"/>
+            <!-- Connections L1→L2 (highlight a Hebbian/Oja weight) -->
+            <g opacity="0.25" stroke="#0d7377" stroke-width="0.8">
+              <line x1="61" y1="55"  x2="137" y2="75"/>
+              <line x1="61" y1="55"  x2="137" y2="115"/>
+              <line x1="61" y1="55"  x2="137" y2="155"/>
+              <line x1="61" y1="95"  x2="137" y2="75"/>
+              <line x1="61" y1="95"  x2="137" y2="115"/>
+              <line x1="61" y1="95"  x2="137" y2="155"/>
+              <line x1="61" y1="135" x2="137" y2="75"/>
+              <line x1="61" y1="135" x2="137" y2="115"/>
+              <line x1="61" y1="135" x2="137" y2="155"/>
+              <line x1="61" y1="175" x2="137" y2="75"/>
+              <line x1="61" y1="175" x2="137" y2="115"/>
+              <line x1="61" y1="175" x2="137" y2="155"/>
+            </g>
+            <!-- Highlighted Oja synapse -->
+            <line x1="61" y1="95" x2="137" y2="115" stroke="#0d7377" stroke-width="3" opacity="0.85"/>
+            <!-- Δw label on highlighted synapse -->
+            <text x="99" y="99" text-anchor="middle" font-size="9.5" fill="#0d7377" font-family="EB Garamond,serif" font-style="italic">Δw</text>
+            <!-- Connections L2→L3 -->
+            <g opacity="0.3" stroke="#14a085" stroke-width="0.8">
+              <line x1="163" y1="75"  x2="237" y2="85"/>
+              <line x1="163" y1="75"  x2="237" y2="125"/>
+              <line x1="163" y1="115" x2="237" y2="85"/>
+              <line x1="163" y1="115" x2="237" y2="125"/>
+              <line x1="163" y1="155" x2="237" y2="85"/>
+              <line x1="163" y1="155" x2="237" y2="125"/>
+            </g>
+            <!-- Recurrent arrow on layer 2 -->
+            <path d="M 163 110 Q 195 95 163 120" fill="none" stroke="#14a085" stroke-width="1.8" stroke-dasharray="4,2" marker-end="url(#rarr)"/>
+            <defs>
+              <marker id="rarr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                <polygon points="0 0, 7 2.5, 0 5" fill="#14a085"/>
+              </marker>
+            </defs>
+            <!-- Oja rule formula -->
+            <rect x="12" y="188" width="276" height="16" rx="3" fill="white" opacity="0.7"/>
+            <text x="150" y="200" text-anchor="middle" font-size="9" fill="#0d7377" font-family="DM Mono,monospace">Oja: Δw = η·y·(x − y·w)</text>
+          </svg>
+        </div>
+        <div class="research-body">
+          <h3>Neural Dynamics &amp; Biologically Constrained Learning</h3>
+          <p>
+            In collaboration with researchers in computational neuroscience, I study how
+            <strong>biologically plausible plasticity rules</strong> — such as Oja's rule — can support learning in
+            recurrent neural networks under realistic biological constraints (local computations, no backpropagation,
+            sparse connectivity).
+          </p>
+          <p>
+            Our work demonstrates that Oja's plasticity rule can overcome several key challenges that prevent
+            standard gradient-based training from being biologically feasible, opening paths toward more
+            brain-like artificial learning.
+          </p>
+          <div class="research-tags">
+            <span class="tag">Plasticity rules</span>
+            <span class="tag">Recurrent networks</span>
+            <span class="tag">Oja's rule</span>
+            <span class="tag">Biologically plausible ML</span>
+            <span class="tag">Hebbian learning</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PAGE: PUBLICATIONS
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-publications">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Publications</h1>
+        <p class="sub">Refereed articles, preprints, and conference proceedings</p>
+      </div>
+
+      <div class="sec-title">Refereed Journal Articles</div>
+      <div class="sec-rule"></div>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-num">[2]</div>
+          <div>
+            <div class="pub-title">Accelerated solutions of convection-dominated PDEs using implicit feature tracking and empirical quadrature</div>
+            <div class="pub-authors"><strong>M. A. Mirhoseini</strong>, M. J. Zahr</div>
+            <div class="pub-venue">International Journal for Numerical Methods in Fluids, 96(1), 102–124, 2024.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1002/fld.5234" target="_blank">doi:10.1002/fld.5234</a></div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="pub-num">[1]</div>
+          <div>
+            <div class="pub-title">Model reduction of convection-dominated PDEs via optimization-based implicit feature tracking</div>
+            <div class="pub-authors"><strong>M. A. Mirhoseini</strong>, M. J. Zahr</div>
+            <div class="pub-venue">Journal of Computational Physics, 473, 111739, 2023.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1016/j.jcp.2022.111739" target="_blank">doi:10.1016/j.jcp.2022.111739</a></div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sec-title" style="margin-top:2.5rem">Preprints &amp; Under Review</div>
+      <div class="sec-rule"></div>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-num">[P3]</div>
+          <div>
+            <div class="pub-title">Oja's plasticity rule overcomes several challenges of training neural networks under biological constraints <span class="preprint-badge">arXiv</span></div>
+            <div class="pub-authors">N. Shervani-Tabar, <strong>M. A. Mirhoseini</strong>, R. Rosenbaum</div>
+            <div class="pub-venue">arXiv:2408.08408, 2025.</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2408.08408" target="_blank">arXiv:2408.08408</a></div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="pub-num">[P2]</div>
+          <div>
+            <div class="pub-title">Learning surrogate rainfall-driven inundation models with few data <span class="preprint-badge">arXiv</span></div>
+            <div class="pub-authors"><strong>M. A. Mirhoseini</strong></div>
+            <div class="pub-venue">arXiv:2411.19323, 2024.</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2411.19323" target="_blank">arXiv:2411.19323</a></div>
+          </div>
+        </li>
+        <li class="pub-item">
+          <div class="pub-num">[P1]</div>
+          <div>
+            <div class="pub-title">AI-driven surrogate for extreme flood inundation maps with real gauge value prediction <span class="preprint-badge">In preparation</span></div>
+            <div class="pub-authors"><strong>M. A. Mirhoseini</strong></div>
+            <div class="pub-venue">Preprint in preparation.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="sec-title" style="margin-top:2.5rem">Conference Papers &amp; Proceedings</div>
+      <div class="sec-rule"></div>
+      <ul class="pub-list">
+        <li class="pub-item">
+          <div class="pub-num">[C1]</div>
+          <div>
+            <div class="pub-title">Dual of Linear Fractional Programming to form a linear fractional programming problem</div>
+            <div class="pub-authors">M. Adib, <strong>M. A. Mirhoseini</strong></div>
+            <div class="pub-venue">41st Annual Iranian Mathematics Conference, Urmia University, Iran, 2010.</div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PAGE: TEACHING
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-teaching">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Teaching</h1>
+        <p class="sub">Over a decade of experience spanning undergraduate mathematics and graduate engineering</p>
+      </div>
+
+      <p style="color:var(--slate-mid);margin-bottom:2rem;max-width:640px;font-size:0.97rem">
+        My teaching emphasizes clear learning outcomes, connection between mathematical theory and real-world
+        applications, and digital-first materials. I have served as both instructor of record and teaching assistant
+        across institutions in the United States and Iran.
+      </p>
+
+      <div class="sec-title">Instructor of Record</div>
+      <div class="sec-rule"></div>
+
+      <div class="teaching-block">
+        <h3>Islamic Azad University &amp; Payame Noor University</h3>
+        <div class="inst">Iran · 2010 – 2014</div>
+        <p style="font-size:0.93rem;color:var(--slate-mid);margin-bottom:0.6rem">
+          Independently designed and delivered full courses, including syllabi, lectures, problem sets, and exams.
+        </p>
+        <div class="course-grid">
+          <span class="course-chip">Calculus I</span>
+          <span class="course-chip">Calculus II</span>
+          <span class="course-chip">Calculus III</span>
+          <span class="course-chip">Ordinary Differential Equations</span>
+          <span class="course-chip">Linear Algebra</span>
+          <span class="course-chip">Linear Programming</span>
+          <span class="course-chip">Discrete Mathematics</span>
+          <span class="course-chip">Statistics &amp; Probability</span>
+          <span class="course-chip">Mathematical Software (Pascal)</span>
+          <span class="course-chip">MATLAB</span>
+          <span class="course-chip">C++</span>
+        </div>
+      </div>
+
+      <div class="sec-title" style="margin-top:2rem">Teaching Assistant</div>
+      <div class="sec-rule"></div>
+
+      <div class="teaching-block">
+        <h3>University of Notre Dame</h3>
+        <div class="inst">2018 – 2023</div>
+        <p style="font-size:0.93rem;color:var(--slate-mid);margin-bottom:0.6rem">
+          Delivered lectures, recitations, and online instruction (Zoom); developed course materials and held office hours.
+        </p>
+        <div class="course-grid">
+          <span class="course-chip">Aerospace Structures (F20, F21)</span>
+          <span class="course-chip">Mechanics II (2019–2022)</span>
+          <span class="course-chip">Finite Element Methods (Sp20)</span>
+          <span class="course-chip">COMSOL Multiphysics (Sp21)</span>
+          <span class="course-chip">Diff. Equations, Vibrations &amp; Controls I (F18)</span>
+        </div>
+      </div>
+
+      <div class="teaching-block">
+        <h3>University of Denver</h3>
+        <div class="inst">2014 – 2016</div>
+        <p style="font-size:0.93rem;color:var(--slate-mid);margin-bottom:0.6rem">
+          Provided instructional and tutoring support.
+        </p>
+        <div class="course-grid">
+          <span class="course-chip">Calculus I–III</span>
+          <span class="course-chip">Calculus for Business &amp; Social Sciences</span>
+          <span class="course-chip">College Algebra &amp; Trigonometry</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PAGE: TALKS
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-talks">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Talks &amp; Presentations</h1>
+        <p class="sub">Invited talks, conference presentations, and conference abstracts</p>
+      </div>
+
+      <div class="sec-title">Invited Talks</div>
+      <div class="sec-rule"></div>
+
+      <div class="talk-item">
+        <div class="talk-year">Jun 2023</div>
+        <div>
+          <div class="talk-title">Accelerated solutions of convection-dominated PDEs</div>
+          <div class="talk-venue">Stochastic Control and Financial Engineering Conference, Princeton University, Princeton, NJ</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Aug 2023</div>
+        <div>
+          <div class="talk-title">Efficient model reduction for convection-dominated PDEs through nonlinear manifold approximation</div>
+          <div class="talk-venue">MIT EAPS, Cambridge, MA</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Jul 2020</div>
+        <div>
+          <div class="talk-title">An optimization-based approach for the reduction of parametrized conservation laws with discontinuities</div>
+          <div class="talk-venue">GAMM Juniors' Summer School on Applied Mathematics and Mechanics, Magdeburg, Germany</div>
+        </div>
+      </div>
+
+      <div class="sec-title" style="margin-top:2.5rem">Conference Presentations</div>
+      <div class="sec-rule"></div>
+
+      <div class="talk-item">
+        <div class="talk-year">Dec 2024</div>
+        <div>
+          <div class="talk-title">Learning surrogate extreme rainfall-driven inundation models with few data</div>
+          <div class="talk-venue">AGU Fall Meeting, Washington, D.C. · <em>with A. Saha, S. Ravela</em></div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Jul–Aug 2022</div>
+        <div>
+          <div class="talk-title">Model reduction of convection-dominated PDEs via optimization-based implicit feature tracking</div>
+          <div class="talk-venue">15th World Congress on Computational Mechanics (WCCM–APCOM), Yokohama, Japan</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Mar 2021</div>
+        <div>
+          <div class="talk-title">Model reduction of convection-dominated flows using implicit tracking</div>
+          <div class="talk-venue">SIAM Conference on Computational Science and Engineering (CSE21), Fort Worth, TX</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Aug 2020</div>
+        <div>
+          <div class="talk-title">An optimization approach to solve parametrized conservation laws based on reduced order models</div>
+          <div class="talk-venue">Rocky Mountain Fluid Mechanics Research Symposium, University of Colorado Boulder</div>
+        </div>
+      </div>
+
+      <div class="sec-title" style="margin-top:2.5rem">Awards &amp; Honors</div>
+      <div class="sec-rule"></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2023</div>
+          <div>
+            <div class="tl-role">Travel Award</div>
+            <div class="tl-org">Stochastic Control &amp; Financial Engineering: Methods &amp; Numerics — Princeton University (Dept. of Operations Research &amp; Financial Engineering / Bendheim Center for Finance)</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2022</div>
+          <div>
+            <div class="tl-role">Travel Award</div>
+            <div class="tl-org">15th World Congress on Computational Mechanics, Yokohama, Japan</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2016</div>
+          <div>
+            <div class="tl-role">John R. and Mary K. Hammond Scholarship</div>
+            <div class="tl-org">Merit-based scholarship for graduate study in Mathematics — University of Denver</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2010</div>
+          <div>
+            <div class="tl-role">Summa Cum Laude</div>
+            <div class="tl-org">M.Sc. in Mathematics — University of Zanjan, Iran</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PAGE: CONTACT
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-contact">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Contact</h1>
+        <p class="sub">Get in touch or download my CV</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-line">
+          <span class="label">Email</span>
+          <a href="mailto:malimirhoseini@gmail.com">malimirhoseini@gmail.com</a>
+        </div>
+        <div class="contact-line">
+          <span class="label">Location</span>
+          <span>Cambridge, MA, USA · U.S. Permanent Resident</span>
+        </div>
+        <div class="contact-line">
+          <span class="label">Scholar</span>
+          <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar profile</a>
+        </div>
+        <div class="contact-line">
+          <span class="label">GitHub</span>
+          <a href="https://github.com/malirez" target="_blank" rel="noopener">github.com/malirez</a>
+        </div>
+        <div class="contact-line">
+          <span class="label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/malireza" target="_blank" rel="noopener">linkedin.com/in/malireza</a>
+        </div>
+      </div>
+
+      <div class="cv-banner">
+        <h3>Curriculum Vitae</h3>
+        <p>Full academic CV including complete publication list, teaching history, and technical skills.</p>
+        <a class="cv-btn" href="Curriculum_Vitae-11.pdf" target="_blank" rel="noopener">↓ Download CV (PDF)</a>
+      </div>
+
+      <div class="sec-title" style="margin-top:2.5rem">Technical Skills</div>
+      <div class="sec-rule"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:0.5rem">
+        <div class="teaching-block" style="padding:1rem 1.2rem">
+          <div style="font-size:0.78rem;font-family:var(--mono);color:var(--teal);letter-spacing:0.06em;margin-bottom:0.5rem">PROGRAMMING</div>
+          <div class="course-grid">
+            <span class="course-chip">Python</span><span class="course-chip">MATLAB</span>
+            <span class="course-chip">Julia</span><span class="course-chip">C++</span>
+            <span class="course-chip">R</span><span class="course-chip">Mathematica</span>
+          </div>
+        </div>
+        <div class="teaching-block" style="padding:1rem 1.2rem">
+          <div style="font-size:0.78rem;font-family:var(--mono);color:var(--teal);letter-spacing:0.06em;margin-bottom:0.5rem">ML / SCIENTIFIC</div>
+          <div class="course-grid">
+            <span class="course-chip">PyTorch</span><span class="course-chip">NumPy / SciPy</span>
+            <span class="course-chip">FreeFEM++</span><span class="course-chip">COMSOL</span>
+            <span class="course-chip">Pyomo</span><span class="course-chip">Gurobi</span>
+          </div>
+        </div>
+        <div class="teaching-block" style="padding:1rem 1.2rem">
+          <div style="font-size:0.78rem;font-family:var(--mono);color:var(--teal);letter-spacing:0.06em;margin-bottom:0.5rem">HPC</div>
+          <div class="course-grid">
+            <span class="course-chip">MPI / OpenMP</span><span class="course-chip">GPU acceleration</span>
+            <span class="course-chip">Linux</span><span class="course-chip">Git</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <footer>
-    © <span id="year"></span> Marzieh Alireza Mirhoseini
+    © <span id="year"></span> Marzieh Alireza Mirhoseini · Cambridge, MA
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // Show target page
+      document.getElementById('page-' + pageId).classList.add('active');
+      // Update nav active state
+      document.querySelectorAll('.nav-link').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === pageId);
+      });
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Update URL hash without scrolling
+      history.pushState(null, '', '#' + pageId);
+      return false;
+    }
+
+    // Handle hash on load
+    function loadFromHash() {
+      const hash = location.hash.replace('#', '');
+      const valid = ['about','research','publications','teaching','talks','contact'];
+      if (hash && valid.includes(hash)) {
+        showPage(hash);
+      }
+    }
+
+    loadFromHash();
+    window.addEventListener('hashchange', loadFromHash);
   </script>
+
 </body>
 </html>
