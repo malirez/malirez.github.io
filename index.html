@@ -978,11 +978,17 @@
           <img src="schematic_loss_noline.png" style="width: 100%;" />
         </div>
         <div class="research-body">
-          <h3>Biologically Constrained Learning &amp; Neural Dynamics</h3>
+          <h3>Biologically Constrained Optimization in Neural Circuits</h3>
           <p>
             We studied how <strong>biologically plausible optimization methods</strong>, particularly Oja's rule, can support learning 
             in fully connected and recurrent neural networks under realistic biological constraints (local computations, 
             absence of mini-batching, and precise initialization).
+          </p>
+          <p>
+            The main idea is to optimize not only the supervised task loss, but also a layer-wise reconstruction objective that 
+            improves the geometry of the network during training. From an optimization viewpoint, this behaves like a soft version 
+            of optimization on the Stiefel-manifold: instead of enforcing exact orthogonality through expensive projections or retractions,
+            the method keeps the iterates close to the manifold in a gradual and scalable way.
           </p>
           <p>
             Our findings show that Oja's rule stabilizes neural activations, maintains richer activation subspaces, 
