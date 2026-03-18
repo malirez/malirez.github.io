@@ -962,6 +962,88 @@
         </div>
       </div>
 
+      <!-- card4: >
+      <!-- Card 4: Linear Fractional Programming Duality -->
+      <div class="research-card">
+        <div class="research-fig">
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+            <defs>
+              <linearGradient id="gfrac" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#e6f4f4;stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:#c8e6e6;stop-opacity:1"/>
+              </linearGradient>
+            </defs>
+            <rect width="300" height="210" fill="url(#gfrac)" rx="4"/>
+      
+            <!-- Primal box -->
+            <rect x="18" y="38" width="118" height="134" rx="6" fill="white" stroke="#0d7377" stroke-width="1.8"/>
+            <text x="77" y="58" text-anchor="middle" font-size="9.5" fill="#0d7377" font-family="DM Mono,monospace" font-weight="400">PRIMAL (P)</text>
+            <line x1="28" y1="63" x2="126" y2="63" stroke="#0d7377" stroke-width="0.8" opacity="0.4"/>
+            <!-- Objective fraction -->
+            <text x="77" y="82" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">cᵀx + α</text>
+            <line x1="42" y1="89" x2="112" y2="89" stroke="#1a2332" stroke-width="1.2"/>
+            <text x="77" y="104" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">dᵀx + β</text>
+            <text x="77" y="118" text-anchor="middle" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">min</text>
+            <!-- Constraints -->
+            <text x="77" y="136" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.  Ax ≥ b</text>
+            <text x="77" y="151" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">x ≥ 0</text>
+            <text x="77" y="164" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">dᵀx + β &gt; 0</text>
+      
+            <!-- Dual box -->
+            <rect x="164" y="38" width="118" height="134" rx="6" fill="white" stroke="#14a085" stroke-width="1.8"/>
+            <text x="223" y="58" text-anchor="middle" font-size="9.5" fill="#14a085" font-family="DM Mono,monospace">DUAL (D)</text>
+            <line x1="174" y1="63" x2="272" y2="63" stroke="#14a085" stroke-width="0.8" opacity="0.4"/>
+            <!-- Dual objective fraction -->
+            <text x="223" y="82" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">bᵀy + αt</text>
+            <line x1="188" y1="89" x2="258" y2="89" stroke="#1a2332" stroke-width="1.2"/>
+            <text x="223" y="104" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">βt − bᵀy</text>
+            <text x="223" y="118" text-anchor="middle" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">max</text>
+            <!-- Constraints -->
+            <text x="223" y="136" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.  Aᵀy ≤ c·t</text>
+            <text x="223" y="151" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">y, t ≥ 0</text>
+      
+            <!-- Double arrow between boxes -->
+            <path d="M 140 95 L 160 95" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da2)"/>
+            <path d="M 160 115 L 140 115" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da3)"/>
+            <defs>
+              <marker id="da2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
+              </marker>
+              <marker id="da3" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
+              </marker>
+            </defs>
+      
+            <!-- Duality labels at bottom -->
+            <rect x="12" y="183" width="130" height="16" rx="3" fill="white" opacity="0.75"/>
+            <text x="77" y="195" text-anchor="middle" font-size="8" fill="#0d7377" font-family="DM Mono,monospace">Weak: f(x) ≥ g(y)</text>
+            <rect x="158" y="183" width="130" height="16" rx="3" fill="white" opacity="0.75"/>
+            <text x="223" y="195" text-anchor="middle" font-size="8" fill="#14a085" font-family="DM Mono,monospace">Strong: f* = g*</text>
+          </svg>
+        </div>
+        <div class="research-body">
+          <h3>Duality Theory for Linear Fractional Programming</h3>
+          <p>
+            Linear fractional programs — where the objective is a <strong>ratio of two linear functions</strong> — arise
+            naturally in planning, finance, transportation, taxation, and performance evaluation. Rather than
+            converting these problems into ordinary linear programs, this work develops a dual formulation that
+            <em>itself</em> remains a linear fractional program.
+          </p>
+          <p>
+            We establish that the primal-dual pair satisfies both <strong>weak duality</strong> (any feasible pair
+            obeys an inequality bound) and <strong>strong duality</strong> (optimal solutions achieve equal objective
+            values). This yields a self-contained, interpretable framework for analyzing linear fractional programs,
+            and suggests the dual may sometimes offer a simpler route for theory and computation.
+          </p>
+          <div class="research-tags">
+            <span class="tag">Linear fractional programming</span>
+            <span class="tag">Duality theory</span>
+            <span class="tag">Convex optimization</span>
+            <span class="tag">Weak &amp; strong duality</span>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 
