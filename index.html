@@ -138,7 +138,7 @@
     /* ─── ABOUT PAGE ────────────────────────────── */
     #page-about .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 220px;
+      grid-template-columns: 260px 1fr;
       gap: 3rem;
       align-items: start;
       padding: 3.5rem 0 2.5rem;
@@ -208,15 +208,12 @@
     }
 
     .photo-frame {
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal-pale) 0%, #c8e6e6 100%);
-      border: 3px solid var(--teal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 240px;
+      height: 300px;
+      border-radius: 12px;
+      border: 2px solid var(--rule);
       overflow: hidden;
+      background: var(--teal-pale);
     }
 
     .photo-frame img {
@@ -642,8 +639,25 @@
   ════════════════════════════════════════════ -->
   <div class="page active" id="page-about">
     <div class="page-wrap">
-
       <div class="hero-grid">
+        <!-- Photo FIRST (left) -->
+        <div class="photo-col">
+          <div class="photo-frame">
+            <img id="headshot-img" src="IMG_4324.JPG" alt="Marzieh Alireza Mirhoseini"
+                 style="width:100%;height:100%;object-fit:cover;cursor:grab;transform-origin:center center;"
+                 draggable="false"/>
+          </div>
+          <!-- zoom controls -->
+          <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;font-size:0.8rem;color:var(--slate-soft);font-family:var(--mono);">
+            <button onclick="adjustZoom(-0.1)" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:1rem;">−</button>
+            <span id="zoom-label">100%</span>
+            <button onclick="adjustZoom(0.1)" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:1rem;">+</button>
+            <button onclick="resetPhoto()" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:0.75rem;margin-left:0.3rem;">reset</button>
+          </div>
+          <div style="font-size:0.75rem;color:var(--slate-soft);font-family:var(--mono);text-align:center;">drag to reposition</div>
+        </div>
+      
+        <!-- Text SECOND (right) -->
         <div>
           <h1>Marzieh Alireza<br>Mirhoseini</h1>
           <div class="tagline">Applied &amp; Computational Mathematics</div>
@@ -664,27 +678,19 @@
             <a href="https://github.com/malirez" target="_blank" rel="noopener">GitHub</a>
             <a href="https://www.linkedin.com/in/malireza" target="_blank" rel="noopener">LinkedIn</a>
           </div>
-          <div class="pill-group">
-            <span class="pill">Model Reduction</span>
-            <span class="pill">Convection-dominated PDEs</span>
-            <span class="pill">Surrogate Flood Models</span>
-            <span class="pill">Physics-informed ML</span>
-            <span class="pill">Optimization</span>
-            <span class="pill">Hyperreduction</span>
-          </div>
-        </div>
-        <div class="photo-col">
-          <div class="photo-frame">
-            <!-- Replace src with actual headshot -->
-            <svg viewBox="0 0 190 190" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="95" cy="75" r="38" fill="#b0dada"/>
-              <ellipse cx="95" cy="158" rx="58" ry="40" fill="#b0dada"/>
-            </svg>
-          </div>
-          <div class="photo-label">Add headshot<br>to replace placeholder</div>
         </div>
       </div>
-
+      
+      <!-- Pills BELOW the grid, full width -->
+      <div class="pill-group">
+        <span class="pill">Model Reduction</span>
+        <span class="pill">Convection-dominated PDEs</span>
+        <span class="pill">Surrogate Flood Models</span>
+        <span class="pill">Physics-informed ML</span>
+        <span class="pill">Optimization</span>
+        <span class="pill">Hyperreduction</span>
+      </div>
+    
       <!-- Positions -->
       <div class="sec-title">Positions</div>
       <div class="sec-rule"></div>
@@ -1390,6 +1396,60 @@
 
     loadFromHash();
     window.addEventListener('hashchange', loadFromHash);
+
+    // Photo pan & zoom
+    (function() {
+      let scale = 1, tx = 0, ty = 0;
+      let dragging = false, startX, startY, startTx, startTy;
+    
+      function applyTransform() {
+        const img = document.getElementById('headshot-img');
+        if (!img) return;
+        img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+        document.getElementById('zoom-label').textContent = Math.round(scale * 100) + '%';
+      }
+    
+      window.adjustZoom = function(delta) {
+        scale = Math.max(0.5, Math.min(3, scale + delta));
+        applyTransform();
+      };
+    
+      window.resetPhoto = function() {
+        scale = 1; tx = 0; ty = 0;
+        applyTransform();
+      };
+    
+      document.addEventListener('DOMContentLoaded', function() {
+        const img = document.getElementById('headshot-img');
+        if (!img) return;
+    
+        img.addEventListener('mousedown', function(e) {
+          dragging = true;
+          startX = e.clientX; startY = e.clientY;
+          startTx = tx; startTy = ty;
+          img.style.cursor = 'grabbing';
+          e.preventDefault();
+        });
+    
+        document.addEventListener('mousemove', function(e) {
+          if (!dragging) return;
+          tx = startTx + (e.clientX - startX);
+          ty = startTy + (e.clientY - startY);
+          applyTransform();
+        });
+    
+        document.addEventListener('mouseup', function() {
+          dragging = false;
+          const img = document.getElementById('headshot-img');
+          if (img) img.style.cursor = 'grab';
+        });
+    
+        img.addEventListener('wheel', function(e) {
+          e.preventDefault();
+          adjustZoom(e.deltaY < 0 ? 0.05 : -0.05);
+        }, { passive: false });
+      });
+    })();
   </script>
 
 </body>
