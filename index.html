@@ -846,7 +846,41 @@
         </div>
       </div>
 
-      <!-- Card 2: Flood surrogate -->
+      <!-- Card 2: NEW RESEARCH -->
+      <div class="research-card">
+        <div class="research-fig">
+          <!-- Replace with your SVG figure -->
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+            <rect width="300" height="210" fill="#e6f4f4" rx="4"/>
+            <text x="150" y="105" text-anchor="middle" font-size="11" fill="#0d7377" font-family="DM Mono,monospace">Figure placeholder</text>
+          </svg>
+        </div>
+        <div class="research-body">
+          <h3>Hyperreduction with Selecting Optimal Mesh Elements</h3>
+          <p>
+            Even after feature alignment, ROM-IFT is still costly because the nonlinear residual must normally be 
+            assembled over all mesh elements. To remove this bottleneck, the method introduces a hyperreduction step 
+            that selects only the most informative elements and assigns them nonnegative weights. The full residual 
+            is viewed as a weighted sum of local elemental contributions, and the weights are learned offline through 
+            a sparsity-promoting optimization problem. The goal is to keep the weighted residual as close as possible 
+            to the original one, while matching key global quantities and using as few active elements as possible. 
+            The nonnegative weights preserve a quadrature interpretation and improve robustness. As a result, the 
+            online computation depends only on a small subset of elements rather than the entire mesh, so the cost 
+            becomes essentially mesh-independent. The method is further improved by a residual-guided greedy strategy: 
+            whenever the current surrogate performs poorly for some parameter, that case is added to training and the 
+            weights are re-optimized. In this way, the algorithm focuses effort only where it is most needed. Overall, 
+            EQP-IFT keeps the accuracy of ROM-IFT while delivering major speedups through a clean combination of sparse 
+            optimization, adaptive training, and selective residual evaluation.
+          </p>
+          <div class="research-tags">
+            <span class="tag">Tag one</span>
+            <span class="tag">Tag two</span>
+            <span class="tag">Tag three</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Flood surrogate -->
       <div class="research-card">
         <div class="research-fig">
           <!-- SVG: Rainfall-driven inundation illustration -->
