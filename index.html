@@ -828,11 +828,14 @@
             as a small nonlinear optimization problem</strong>. The key idea is to optimize not only the reduced coefficients 
             of the solution, but also a low-dimensional domain transformation that aligns the moving features with a 
             common reference configuration. After this alignment, the solution becomes much easier to approximate with 
-            only a few basis modes. For each new parameter, the method solves a compact least-squares problem using a 
-            robust Levenberg–Marquardt strategy, while a distortion penalty keeps the map smooth, stable, and 
+            only a few basis modes. 
+          </p>
+          <p>
+            For each new parameter, the method solves a compact <strong>least-squares problem</strong> using a 
+            robust <strong>Levenberg–Marquardt</strong> strategy, while a distortion penalty keeps the map smooth, stable, and 
             boundary-preserving. Offline, the reduced basis and the family of admissible maps are learned from training 
             snapshots; online, only a low-dimensional problem is solved. In this way, the method preserves the 
-            minimum-residual structure of projection-based ROMs while overcoming their weakness for moving features. 
+            <strong>minimum-residual structure</strong> of projection-based ROMs while overcoming their weakness for moving features. 
             The result is a reduced model that is more accurate, uses fewer modes, and remains computationally efficient 
             for challenging advection-dominated PDEs.
           </p>
@@ -859,16 +862,17 @@
           <h3>Hyperreduction with Selecting Optimal Mesh Elements</h3>
           <p>
             Even after feature alignment, ROM-IFT is still costly because the nonlinear residual must normally be 
-            assembled over all mesh elements. To remove this bottleneck, the method introduces a hyperreduction step 
-            that selects only the most informative elements and assigns them nonnegative weights. The full residual 
+            assembled over all mesh elements. To remove this bottleneck, the method introduces a <strong>hyperreduction 
+            step</strong> that selects only the most informative elements and assigns them nonnegative weights. The full residual 
             is viewed as a weighted sum of local elemental contributions, and the weights are learned offline through 
-            a sparsity-promoting optimization problem. The goal is to keep the weighted residual as close as possible 
+            a <strong>sparsity-promoting optimization problem</strong>. The goal is to keep the weighted residual as close as possible 
             to the original one, while matching key global quantities and using as few active elements as possible. 
-            The nonnegative weights preserve a quadrature interpretation and improve robustness. As a result, the 
-            online computation depends only on a small subset of elements rather than the entire mesh, so the cost 
-            becomes essentially mesh-independent. The method is further improved by a residual-guided greedy strategy: 
-            whenever the current surrogate performs poorly for some parameter, that case is added to training and the 
-            weights are re-optimized. In this way, the algorithm focuses effort only where it is most needed. Overall, 
+            The nonnegative weights preserve a quadrature interpretation and improve robustness. 
+            
+            As a result, the online computation depends only on a small subset of elements rather than the entire mesh, 
+            so the cost becomes <strong>essentially mesh-independent</strong>. The method is further improved by a residual-guided greedy 
+            strategy: whenever the current surrogate performs poorly for some parameter, that case is added to training and 
+            the weights are re-optimized. In this way, the algorithm focuses effort only where it is most needed. Overall, 
             EQP-IFT keeps the accuracy of ROM-IFT while delivering major speedups through a clean combination of sparse 
             optimization, adaptive training, and selective residual evaluation.
           </p>
