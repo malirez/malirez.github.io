@@ -923,7 +923,7 @@
         </div>
       </div>
 
-      <!-- Card 3: Neural dynamics -->
+      <!-- Card 4: Neural dynamics -->
       <div class="research-card">
         <div class="research-fig">
           <!-- PNG: Biologically plausible neural network / Oja rule -->
@@ -957,74 +957,29 @@
         </div>
       </div>
 
-      <!-- card4: >
-      <!-- Card 4: Linear Fractional Programming Duality -->
+      <!-- Card 5: Linear Fractional Programming Duality -->
       <div class="research-card">
-        <div class="research-fig">
-          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
-            <defs>
-              <linearGradient id="gfrac" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#e6f4f4"/>
-                <stop offset="100%" style="stop-color:#c8e6e6"/>
-              </linearGradient>
-              <marker id="da2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-                <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
-              </marker>
-              <marker id="da3" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
-                <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
-              </marker>
-            </defs>
-          
-            <rect width="300" height="210" fill="url(#gfrac)" rx="4"/>
-          
-            <!-- Primal box -->
-            <rect x="14" y="28" width="122" height="150" rx="6" fill="white" stroke="#0d7377" stroke-width="1.8"/>
-            <text x="75" y="46" text-anchor="middle" font-size="9.5" fill="#0d7377" font-family="DM Mono,monospace">PRIMAL (P)</text>
-            <line x1="24" y1="51" x2="126" y2="51" stroke="#0d7377" stroke-width="0.8" opacity="0.4"/>
-          
-            <!-- min centered on fraction -->
-            <text x="36" y="84" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">max</text>
-            <text x="96" y="79" text-anchor="middle" font-size="10.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">α₀ + αᵀx</text>
-            <line x1="73" y1="84" x2="119" y2="84" stroke="#1a2332" stroke-width="1.1"/>
-            <text x="96" y="96" text-anchor="middle" font-size="10.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">β₀ + βᵀx</text>
-          
-            <!-- s.t. aligned with min, constraints indented -->
-            <text x="36" y="115" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.</text>
-            <text x="73" y="115" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">Ax ≤ b</text>
-            <text x="73" y="131" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">x ≥ 0</text>
-          
-            <!-- Dual box -->
-            <rect x="162" y="28" width="122" height="150" rx="6" fill="white" stroke="#14a085" stroke-width="1.8"/>
-            <text x="223" y="46" text-anchor="middle" font-size="9.5" fill="#14a085" font-family="DM Mono,monospace">DUAL (D)</text>
-            <line x1="172" y1="51" x2="274" y2="51" stroke="#14a085" stroke-width="0.8" opacity="0.4"/>
-                      
-            <!-- min uᵀg on one line (no fraction) -->
-            <text x="184" y="84" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">min</text>
-            <text x="221" y="84" text-anchor="start" font-size="10.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">uᵀg</text>
-            
-            <!-- s.t. aligned with min, constraints indented -->
-            <text x="184" y="115" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.</text>
-            <text x="221" y="115" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">uᵀG = pᵀ</text>
-            <text x="221" y="131" text-anchor="start" font-size="10.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">u ≥ 0</text>
-                                    
-            <!-- Bidirectional arrows -->
-            <path d="M 140 84 L 158 84" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da2)"/>
-            <path d="M 158 98 L 140 98" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da3)"/>
-          </svg>
-        </div>
         <div class="research-body">
           <h3>Duality Theory for Linear Fractional Programming</h3>
           <p>
-            Linear fractional programs — where the objective is a <strong>ratio of two linear functions</strong> — arise
-            naturally in planning, finance, transportation, taxation, and performance evaluation. Rather than
-            converting these problems into ordinary linear programs, this work develops a dual formulation that
-            <em>itself</em> remains a linear fractional program.
+            Many real decision problems in operations, finance, and networks are naturally expressed as a <strong>benefit-to-cost 
+            ratio</strong> rather than a single linear objective. This work studies such problems through a <strong>linear 
+            fractional program</strong>, where the objective is the ratio of two affine functions under linear constraints. 
+            Although this ratio form is harder than a standard linear program, the key idea is to use the <strong>Charnes–Cooper 
+            transformation</strong> to convert it into an equivalent linear program. This reformulation preserves the meaning of
+            the original efficiency objective while making the problem solvable by standard LP methods. As a result, one obtains 
+            a globally optimal solution with a computational framework that is both clean and practical. This also provides a 
+            strong foundation for handling ratio-based models in a way that is accessible to the broader optimization community.
           </p>
           <p>
-            We establish that the primal-dual pair satisfies both <strong>weak duality</strong> (any feasible pair
-            obeys an inequality bound) and <strong>strong duality</strong> (optimal solutions achieve equal objective
-            values). This yields a self-contained, interpretable framework for analyzing linear fractional programs,
-            and suggests the dual may sometimes offer a simpler route for theory and computation.
+            Beyond computation, the work develops a <strong>duality framework</strong> tailored to the fractional structure 
+            itself, rather than stopping at the dual of the transformed LP. This leads to interpretable dual variables, clear 
+            certificates of optimality, and convergence guarantees for algorithms designed directly for the original ratio problem. 
+            In particular, the method uses a trust-region globalization strategy to improve robustness and stabilize difficult 
+            or ill-conditioned cases. The overall contribution is therefore twofold: an exact LP-equivalent reformulation for 
+            efficient computation, and a principled dual viewpoint for analysis and algorithm design. Together, these ideas 
+            make <strong>fractional optimization</strong> easier to solve, easier to interpret, and more useful for real 
+            applications where efficiency is the main objective.
           </p>
           <div class="research-tags">
             <span class="tag">Linear fractional programming</span>
