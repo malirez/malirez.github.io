@@ -385,6 +385,37 @@
       font-weight: 400;
     }
 
+        /* ADD HERE */
+    .tag:hover {
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+    }
+
+    .research-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    
+    .res-link {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--teal);
+      border-radius: 20px;
+      color: var(--teal);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .res-link:hover {
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+    }
+
     /* ─── PUBLICATIONS PAGE ─────────────────────── */
     .pub-list { list-style: none; }
 
@@ -824,10 +855,10 @@
             EQP-IFT keeps the accuracy of ROM-IFT while delivering major speedups through a clean combination of sparse 
             optimization, adaptive training, and selective residual evaluation.
           </p>
-          <div class="research-tags">
-            <span class="tag">Tag one</span>
-            <span class="tag">Tag two</span>
-            <span class="tag">Tag three</span>
+          <div class="research-links">
+            <a href="https://doi.org/10.1016/j.jcp.2022.111739" target="_blank" class="res-link">📄 Paper</a>
+            <a href="slides/myslides.pdf" target="_blank" class="res-link">📊 Slides</a>
+            <a href="https://www.youtube.com/watch?v=XXXX" target="_blank" class="res-link">▶ Video</a>
           </div>
         </div>
       </div>
