@@ -868,7 +868,8 @@
             a <strong>sparsity-promoting optimization problem</strong>. The goal is to keep the weighted residual as close as possible 
             to the original one, while matching key global quantities and using as few active elements as possible. 
             The nonnegative weights preserve a quadrature interpretation and improve robustness. 
-            
+          </p>
+          <p>
             As a result, the online computation depends only on a small subset of elements rather than the entire mesh, 
             so the cost becomes <strong>essentially mesh-independent</strong>. The method is further improved by a residual-guided greedy 
             strategy: whenever the current surrogate performs poorly for some parameter, that case is added to training and 
@@ -955,15 +956,24 @@
         <div class="research-body">
           <h3>Physics-Aware Surrogate Models for Flood &amp; Hazard Prediction</h3>
           <p>
-            High-fidelity hydrodynamic simulations of flood inundation are extremely costly — prohibitively so for
-            real-time forecasting or uncertainty quantification. I design <strong>deep learning surrogates</strong> that
-            learn the map from rainfall and gauge observations to inundation maps using only a small number of expensive
-            simulator runs.
+            This research introduces a <strong>physics-based surrogate model</strong>, built upon first-principles coastal ocean 
+            simulations rather than relying solely on data-driven learning. As a result, the model's predictions remain physically 
+            plausible from the outset. The goal is to replace very expensive simulations with a fast, reliable model that still 
+            accounts for uncertainty and complex flow behavior. To do this, the method uses a <strong>two-stage hybrid design</strong>: 
+            an ensemble-based Gaussian process first provides a coarse prediction together with an uncertainty estimate, and a 
+            deep neural refinement model then turns that coarse output into a high-resolution prediction using the latest observations. 
+            This combination gives the speed of machine learning while preserving the physical structure inherited from trusted 
+            simulation outputs.
           </p>
           <p>
-            Current work focuses on physics-constrained architectures that respect the underlying hydraulics,
-            data-efficient training strategies for scarce simulation budgets, and generalisation to
-            extreme or out-of-distribution events with real gauge data.
+            From an optimization and machine-learning perspective, the main contribution is the addition of a <strong>worst-case error 
+            objective</strong> to standard accuracy losses. Instead of optimizing only average performance, the training explicitly 
+            penalizes large errors in rare or extreme cases, which is essential for reliable scientific prediction. The 
+            Gaussian-process stage remains efficient by exploiting correlations between low- and high-fidelity simulations, 
+            while the neural network continuously recalibrates as new data arrive. Overall, the framework is <strong>uncertainty-aware, 
+            robust, and scalable:</strong> it produces accurate predictions, controls extreme errors, and, in proof-of-concept experiments, 
+            achieves computational speeds several orders of magnitude greater than full-scale simulations while maintaining 
+            strong agreement with high-fidelity reference solutions.
           </p>
           <div class="research-tags">
             <span class="tag">Deep learning</span>
