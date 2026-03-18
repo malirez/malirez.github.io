@@ -643,18 +643,12 @@
         <!-- Photo FIRST (left) -->
         <div class="photo-col">
           <div class="photo-frame">
-            <img id="headshot-img" src="IMG_4324.JPG" alt="Marzieh Alireza Mirhoseini"
-                 style="width:100%;height:100%;object-fit:cover;cursor:grab;transform-origin:center center;"
+            <img src="IMG_4324.JPG" alt="Marzieh Alireza Mirhoseini"
+                 style="width:100%; height:100%; object-fit:cover; 
+                        transform: translate(31px, 2px) scale(1.7);
+                        transform-origin: center center;"
                  draggable="false"/>
           </div>
-          <!-- zoom controls -->
-          <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;font-size:0.8rem;color:var(--slate-soft);font-family:var(--mono);">
-            <button onclick="adjustZoom(-0.1)" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:1rem;">−</button>
-            <span id="zoom-label">100%</span>
-            <button onclick="adjustZoom(0.1)" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:1rem;">+</button>
-            <button onclick="resetPhoto()" style="border:1px solid var(--rule);background:white;border-radius:4px;padding:0.1rem 0.5rem;cursor:pointer;font-size:0.75rem;margin-left:0.3rem;">reset</button>
-          </div>
-          <div style="font-size:0.75rem;color:var(--slate-soft);font-family:var(--mono);text-align:center;">drag to reposition</div>
         </div>
       
         <!-- Text SECOND (right) -->
