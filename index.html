@@ -972,40 +972,6 @@
                 <stop offset="0%" style="stop-color:#e6f4f4;stop-opacity:1"/>
                 <stop offset="100%" style="stop-color:#c8e6e6;stop-opacity:1"/>
               </linearGradient>
-            </defs>
-            <rect width="300" height="210" fill="url(#gfrac)" rx="4"/>
-      
-            <!-- Primal box -->
-            <rect x="18" y="38" width="118" height="134" rx="6" fill="white" stroke="#0d7377" stroke-width="1.8"/>
-            <text x="77" y="58" text-anchor="middle" font-size="9.5" fill="#0d7377" font-family="DM Mono,monospace" font-weight="400">PRIMAL (P)</text>
-            <line x1="28" y1="63" x2="126" y2="63" stroke="#0d7377" stroke-width="0.8" opacity="0.4"/>
-            <!-- Objective fraction -->
-            <text x="77" y="82" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">cᵀx + α</text>
-            <line x1="42" y1="89" x2="112" y2="89" stroke="#1a2332" stroke-width="1.2"/>
-            <text x="77" y="104" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">dᵀx + β</text>
-            <text x="77" y="118" text-anchor="middle" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">min</text>
-            <!-- Constraints -->
-            <text x="77" y="136" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.  Ax ≥ b</text>
-            <text x="77" y="151" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">x ≥ 0</text>
-            <text x="77" y="164" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">dᵀx + β &gt; 0</text>
-      
-            <!-- Dual box -->
-            <rect x="164" y="38" width="118" height="134" rx="6" fill="white" stroke="#14a085" stroke-width="1.8"/>
-            <text x="223" y="58" text-anchor="middle" font-size="9.5" fill="#14a085" font-family="DM Mono,monospace">DUAL (D)</text>
-            <line x1="174" y1="63" x2="272" y2="63" stroke="#14a085" stroke-width="0.8" opacity="0.4"/>
-            <!-- Dual objective fraction -->
-            <text x="223" y="82" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">bᵀy + αt</text>
-            <line x1="188" y1="89" x2="258" y2="89" stroke="#1a2332" stroke-width="1.2"/>
-            <text x="223" y="104" text-anchor="middle" font-size="10" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">βt − bᵀy</text>
-            <text x="223" y="118" text-anchor="middle" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">max</text>
-            <!-- Constraints -->
-            <text x="223" y="136" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">s.t.  Aᵀy ≤ c·t</text>
-            <text x="223" y="151" text-anchor="middle" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">y, t ≥ 0</text>
-      
-            <!-- Double arrow between boxes -->
-            <path d="M 140 95 L 160 95" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da2)"/>
-            <path d="M 160 115 L 140 115" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da3)"/>
-            <defs>
               <marker id="da2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
                 <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
               </marker>
@@ -1013,7 +979,46 @@
                 <polygon points="0 0, 7 2.5, 0 5" fill="#3d4f63"/>
               </marker>
             </defs>
-      
+          
+            <rect width="300" height="210" fill="url(#gfrac)" rx="4"/>
+          
+            <!-- Primal box -->
+            <rect x="18" y="38" width="118" height="134" rx="6" fill="white" stroke="#0d7377" stroke-width="1.8"/>
+            <text x="77" y="56" text-anchor="middle" font-size="9.5" fill="#0d7377" font-family="DM Mono,monospace">PRIMAL (P)</text>
+            <line x1="28" y1="61" x2="126" y2="61" stroke="#0d7377" stroke-width="0.8" opacity="0.4"/>
+          
+            <!-- min + fraction -->
+            <text x="28" y="86" text-anchor="start" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">min</text>
+            <text x="91" y="78" text-anchor="middle" font-size="9.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">cᵀx + α</text>
+            <line x1="63" y1="83" x2="119" y2="83" stroke="#1a2332" stroke-width="1.1"/>
+            <text x="91" y="95" text-anchor="middle" font-size="9.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">dᵀx + β</text>
+          
+            <!-- s.t. aligned with min -->
+            <text x="28" y="114" text-anchor="start" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">s.t.</text>
+            <text x="50" y="128" text-anchor="start" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">Ax ≥ b</text>
+            <text x="50" y="143" text-anchor="start" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">dᵀx + β &gt; 0</text>
+            <text x="50" y="158" text-anchor="start" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">x ≥ 0</text>
+          
+            <!-- Dual box -->
+            <rect x="164" y="38" width="118" height="134" rx="6" fill="white" stroke="#14a085" stroke-width="1.8"/>
+            <text x="223" y="56" text-anchor="middle" font-size="9.5" fill="#14a085" font-family="DM Mono,monospace">DUAL (D)</text>
+            <line x1="174" y1="61" x2="272" y2="61" stroke="#14a085" stroke-width="0.8" opacity="0.4"/>
+          
+            <!-- max + fraction -->
+            <text x="174" y="86" text-anchor="start" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">max</text>
+            <text x="237" y="78" text-anchor="middle" font-size="9.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">bᵀy + αt</text>
+            <line x1="209" y1="83" x2="265" y2="83" stroke="#1a2332" stroke-width="1.1"/>
+            <text x="237" y="95" text-anchor="middle" font-size="9.5" fill="#1a2332" font-family="EB Garamond,serif" font-style="italic">βt − bᵀy</text>
+          
+            <!-- s.t. aligned with max -->
+            <text x="174" y="114" text-anchor="start" font-size="9" fill="#3d4f63" font-family="EB Garamond,serif">s.t.</text>
+            <text x="196" y="128" text-anchor="start" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">Aᵀy ≤ ct</text>
+            <text x="196" y="143" text-anchor="start" font-size="8.5" fill="#3d4f63" font-family="EB Garamond,serif" font-style="italic">y, t ≥ 0</text>
+          
+            <!-- Bidirectional arrows -->
+            <path d="M 140 86 L 160 86" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da2)"/>
+            <path d="M 160 100 L 140 100" fill="none" stroke="#3d4f63" stroke-width="1.6" marker-end="url(#da3)"/>
+          
             <!-- Duality labels at bottom -->
             <rect x="12" y="183" width="130" height="16" rx="3" fill="white" opacity="0.75"/>
             <text x="77" y="195" text-anchor="middle" font-size="8" fill="#0d7377" font-family="DM Mono,monospace">Weak: f(x) ≥ g(y)</text>
