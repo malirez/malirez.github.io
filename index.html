@@ -630,6 +630,7 @@
           <li><a href="#" onclick="showPage('publications')" class="nav-link" data-page="publications">Publications</a></li>
           <li><a href="#" onclick="showPage('teaching')" class="nav-link" data-page="teaching">Teaching</a></li>
           <li><a href="#" onclick="showPage('talks')" class="nav-link" data-page="talks">Talks</a></li>
+          <li><a href="#" onclick="showPage('awards')" class="nav-link" data-page="awards">Awards</a></li>
           <li><a href="#" onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</a></li>
         </ul>
       </nav>
@@ -1212,6 +1213,109 @@
     </div>
   </div>
 
+    <!-- ════════════════════════════════════════════
+       PAGE: AWARDS
+  ════════════════════════════════════════════ -->
+  <div class="page" id="page-awards">
+    <div class="page-wrap">
+      <div class="page-header">
+        <h1>Talks &amp; Presentations</h1>
+        <p class="sub">Invited talks, conference presentations, and conference abstracts</p>
+      </div>
+
+      <div class="sec-title">Invited Talks</div>
+      <div class="sec-rule"></div>
+
+      <div class="talk-item">
+        <div class="talk-year">Jun 2023</div>
+        <div>
+          <div class="talk-title">Accelerated solutions of convection-dominated PDEs</div>
+          <div class="talk-venue">Stochastic Control and Financial Engineering Conference, Princeton University, Princeton, NJ</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Aug 2023</div>
+        <div>
+          <div class="talk-title">Efficient model reduction for convection-dominated PDEs through nonlinear manifold approximation</div>
+          <div class="talk-venue">MIT EAPS, Cambridge, MA</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Jul 2020</div>
+        <div>
+          <div class="talk-title">An optimization-based approach for the reduction of parametrized conservation laws with discontinuities</div>
+          <div class="talk-venue">GAMM Juniors' Summer School on Applied Mathematics and Mechanics, Magdeburg, Germany</div>
+        </div>
+      </div>
+
+      <div class="sec-title" style="margin-top:2.5rem">Conference Presentations</div>
+      <div class="sec-rule"></div>
+
+      <div class="talk-item">
+        <div class="talk-year">Dec 2024</div>
+        <div>
+          <div class="talk-title">Learning surrogate extreme rainfall-driven inundation models with few data</div>
+          <div class="talk-venue">AGU Fall Meeting, Washington, D.C. · <em>with A. Saha, S. Ravela</em></div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Jul–Aug 2022</div>
+        <div>
+          <div class="talk-title">Model reduction of convection-dominated PDEs via optimization-based implicit feature tracking</div>
+          <div class="talk-venue">15th World Congress on Computational Mechanics (WCCM–APCOM), Yokohama, Japan</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Mar 2021</div>
+        <div>
+          <div class="talk-title">Model reduction of convection-dominated flows using implicit tracking</div>
+          <div class="talk-venue">SIAM Conference on Computational Science and Engineering (CSE21), Fort Worth, TX</div>
+        </div>
+      </div>
+      <div class="talk-item">
+        <div class="talk-year">Aug 2020</div>
+        <div>
+          <div class="talk-title">An optimization approach to solve parametrized conservation laws based on reduced order models</div>
+          <div class="talk-venue">Rocky Mountain Fluid Mechanics Research Symposium, University of Colorado Boulder</div>
+        </div>
+      </div>
+
+      <div class="sec-title" style="margin-top:2.5rem">Awards &amp; Honors</div>
+      <div class="sec-rule"></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2023</div>
+          <div>
+            <div class="tl-role">Travel Award</div>
+            <div class="tl-org">Stochastic Control &amp; Financial Engineering: Methods &amp; Numerics — Princeton University (Dept. of Operations Research &amp; Financial Engineering / Bendheim Center for Finance)</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2022</div>
+          <div>
+            <div class="tl-role">Travel Award</div>
+            <div class="tl-org">15th World Congress on Computational Mechanics, Yokohama, Japan</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2016</div>
+          <div>
+            <div class="tl-role">John R. and Mary K. Hammond Scholarship</div>
+            <div class="tl-org">Merit-based scholarship for graduate study in Mathematics — University of Denver</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2010</div>
+          <div>
+            <div class="tl-role">Summa Cum Laude</div>
+            <div class="tl-org">M.Sc. in Mathematics — University of Zanjan, Iran</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ════════════════════════════════════════════
        PAGE: CONTACT
   ════════════════════════════════════════════ -->
@@ -1308,7 +1412,7 @@
     // Handle hash on load
     function loadFromHash() {
       const hash = location.hash.replace('#', '');
-      const valid = ['about','research','publications','teaching','talks','contact'];
+      const valid = ['about','research','publications','teaching','talks','awards','contact'];
       if (hash && valid.includes(hash)) {
         showPage(hash);
       }
