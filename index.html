@@ -1390,60 +1390,6 @@
 
     loadFromHash();
     window.addEventListener('hashchange', loadFromHash);
-
-    // Photo pan & zoom
-    (function() {
-      let scale = 1, tx = 0, ty = 0;
-      let dragging = false, startX, startY, startTx, startTy;
-    
-      function applyTransform() {
-        const img = document.getElementById('headshot-img');
-        if (!img) return;
-        img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
-        document.getElementById('zoom-label').textContent = Math.round(scale * 100) + '%';
-      }
-    
-      window.adjustZoom = function(delta) {
-        scale = Math.max(0.5, Math.min(3, scale + delta));
-        applyTransform();
-      };
-    
-      window.resetPhoto = function() {
-        scale = 1; tx = 0; ty = 0;
-        applyTransform();
-      };
-    
-      document.addEventListener('DOMContentLoaded', function() {
-        const img = document.getElementById('headshot-img');
-        if (!img) return;
-    
-        img.addEventListener('mousedown', function(e) {
-          dragging = true;
-          startX = e.clientX; startY = e.clientY;
-          startTx = tx; startTy = ty;
-          img.style.cursor = 'grabbing';
-          e.preventDefault();
-        });
-    
-        document.addEventListener('mousemove', function(e) {
-          if (!dragging) return;
-          tx = startTx + (e.clientX - startX);
-          ty = startTy + (e.clientY - startY);
-          applyTransform();
-        });
-    
-        document.addEventListener('mouseup', function() {
-          dragging = false;
-          const img = document.getElementById('headshot-img');
-          if (img) img.style.cursor = 'grab';
-        });
-    
-        img.addEventListener('wheel', function(e) {
-          e.preventDefault();
-          adjustZoom(e.deltaY < 0 ? 0.05 : -0.05);
-        }, { passive: false });
-      });
-    })();
   </script>
 
 </body>
