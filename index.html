@@ -820,18 +820,21 @@
           </svg>
         </div>
         <div class="research-body">
-          <h3>Model Reduction &amp; Hyperreduction for Convection-Dominated PDEs</h3>
+          <h3>Optimization-Based Model Reduction for PDEs</h3>
           <p>
-            Standard reduced-order models (ROMs) struggle with convection-dominated problems because solutions contain
-            sharp fronts and shocks that cannot be captured efficiently by linear subspaces. I develop
-            <strong>optimization-based implicit feature tracking</strong> methods that smoothly deform the computational
-            domain so that the moving feature stays aligned with the mesh, enabling compact, accurate low-dimensional
-            representations.
-          </p>
-          <p>
-            Combined with <strong>empirical quadrature / hyperreduction</strong>, these approaches achieve dramatic
-            speedups — full accuracy at a fraction of the cost of high-fidelity simulations — making
-            parameter studies and real-time queries feasible for complex fluid problems.
+            Classical reduced-order models often fail for transport- or convection-dominated PDEs because the main 
+            features of the solution, such as sharp fronts or waves, move across the domain and cannot be captured 
+            efficiently by a fixed linear basis. This work addresses that difficulty by <strong>formulating model reduction 
+            as a small nonlinear optimization problem</strong>. The key idea is to optimize not only the reduced coefficients 
+            of the solution, but also a low-dimensional domain transformation that aligns the moving features with a 
+            common reference configuration. After this alignment, the solution becomes much easier to approximate with 
+            only a few basis modes. For each new parameter, the method solves a compact least-squares problem using a 
+            robust Levenberg–Marquardt strategy, while a distortion penalty keeps the map smooth, stable, and 
+            boundary-preserving. Offline, the reduced basis and the family of admissible maps are learned from training 
+            snapshots; online, only a low-dimensional problem is solved. In this way, the method preserves the 
+            minimum-residual structure of projection-based ROMs while overcoming their weakness for moving features. 
+            The result is a reduced model that is more accurate, uses fewer modes, and remains computationally efficient 
+            for challenging advection-dominated PDEs.
           </p>
           <div class="research-tags">
             <span class="tag">PDE-constrained optimization</span>
@@ -966,7 +969,7 @@
       <!-- Card 4: Linear Fractional Programming Duality -->
       <div class="research-card">
         <div class="research-fig">
-          <svg viewBox="0 0 300 192" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
+          <svg viewBox="0 0 300 210" xmlns="http://www.w3.org/2000/svg" style="max-height:200px">
             <defs>
               <linearGradient id="gfrac" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style="stop-color:#e6f4f4"/>
